@@ -4,13 +4,13 @@
 
 # Site
 title: wanglei
-#subtitle: 不是因为喜欢而在一起 而是因为在一起喜欢
-subtitle: 再牛逼的梦想，也抵不住傻逼似得坚持
-description: 大翟
-author: dzhai
+subtitle: 不是因为喜欢而在一起 而是因为在一起喜欢
+#subtitle: 再牛逼的梦想，也抵不住傻逼似得坚持
+description: 王雷
+author: wanglei
 email: 860765083@qq.com
 language: zh-Hans
-keywords: dzhai
+keywords: wanglei
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://www.cobala.cn
@@ -109,16 +109,16 @@ stylus:
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:dzhai/www.dzhai.net.git
+  repo: git@github.com:mrwlei/www.cobala.cn.git
   branch: gh-pages
   
 
 #https://github.com/nihgwu/hexo-hey
-admin:
-    name: dzhai
-    password: asdasd
-    secret: dzhai
-    expire: 60*1
+#admin:
+#    name: dzhai
+#    password: asdasd
+#    secret: dzhai
+#    expire: 60*1
     # cors: http://localhost:3000
 
 	
@@ -209,7 +209,7 @@ google_analytics:
 baidu_analytics: de86f16e85759414cb73dd76433ae1b7
 
 # 站点起始时间
-since: 2014
+since: 2016
 
 avatar: /resource/images/author.jpg
 
