@@ -4,7 +4,7 @@
 
 # Site
 title: wanglei
-subtitle: 不是因为喜欢而在一起 而是因为在一起喜欢
+subtitle: 越努力,越幸运~
 #subtitle: 再牛逼的梦想，也抵不住傻逼似得坚持
 description: 王雷
 author: wanglei
@@ -114,12 +114,12 @@ deploy:
   
 
 #https://github.com/nihgwu/hexo-hey
-#admin:
-#    name: dzhai
-#    password: asdasd
-#    secret: dzhai
-#    expire: 60*1
-    # cors: http://localhost:3000
+admin:
+    name: mrwlei
+    password: asdasd
+    secret: mrwlei
+    expire: 60*1
+    #cors: http://localhost:3000
 
 	
 #https://github.com/hexojs/hexo-html-minifier	
@@ -183,9 +183,9 @@ duoshuo_share: true
 social:
   GitHub: https://github.com/mrwlei
   #Twitter: your-twitter-url
-  微博: http://weibo.com/2532603543
+  微博: http://weibo.com/2817408893
   #DouBan: your-douban-url
-  知乎: http://zhihu.com/people/dzhai
+ #知乎: http://zhihu.com/people/dzhai
   # 等等
 
 
