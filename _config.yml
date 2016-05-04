@@ -5,7 +5,6 @@
 # Site
 title: wanglei
 subtitle: 越努力,越幸运~
-#subtitle: 再牛逼的梦想，也抵不住傻逼似得坚持
 description: 王雷
 author: wanglei
 email: 860765083@qq.com
@@ -185,7 +184,7 @@ social:
   #Twitter: your-twitter-url
   微博: http://weibo.com/2817408893
   #DouBan: your-douban-url
- #知乎: http://zhihu.com/people/dzhai
+  知乎: https://www.zhihu.com/people/wang-lei-98-17-15
   # 等等
 
 
@@ -206,7 +205,7 @@ google_analytics:
 
 
 # 百度统计 ID，此 ID 是百度统计提供脚本中 hm.js? 后面那串字符，非百度统计帐号
-baidu_analytics: de86f16e85759414cb73dd76433ae1b7
+baidu_analytics: 80596583bb5931d47c4313e62409579c
 
 # 站点起始时间
 since: 2016
