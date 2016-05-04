@@ -167,7 +167,7 @@ html_minifier:
 static.webservice: http://7xjq6x.com1.z0.glb.clouddn.com
 
 # 多说帐号
-duoshuo_shortname: dzhai
+duoshuo_shortname: mrwlei
 
 # DISQUS 帐号 （如果已经设置 多说 帐号，此选项将被跳过）
 #disqus_shortname: 
