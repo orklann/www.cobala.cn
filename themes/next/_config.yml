@@ -220,14 +220,12 @@ facebook_sdk:
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
   enable: true
-  app_id: HNPH0nHFmcw9F2riNnCLuSnM
-  app_key: JK2oyTT3QSqJyXDq8JJpQKGD
+  app_id: Smg9YtKNpl5imYKFwX6kIRtX
+  app_key: 7nPx98DYlGDITCL0xkpcj8Qh
 
 
-
-
-
-
+#HNPH0nHFmcw9F2riNnCLuSnM
+#JK2oyTT3QSqJyXDq8JJpQKGD
 
 
 
