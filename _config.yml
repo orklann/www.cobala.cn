@@ -10,6 +10,7 @@ author: wanglei
 email: 860765083@qq.com
 language: zh-Hans
 keywords: wanglei
+
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://www.cobala.cn
@@ -75,7 +76,6 @@ time_format: H:mm:ss
 ## Set per_page to 0 to disable pagination
 per_page: 5
 pagination_dir: page
-
 archive_generator:
   per_page: 20
   yearly: true
