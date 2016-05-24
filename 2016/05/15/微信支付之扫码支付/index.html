@@ -1,0 +1,925 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="微信支付之扫码支付" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="wanglei" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="微信扫码支付简介最近项目中要接入微信支付，从官方文档 上了解了下微信支付的场景及方式，由此总结了下开发需要做的事情。微信扫码支付，简单的来说，就是你把微信支付需要的信息，生成到二维码图片中。通过微信扫一扫，发起支付。我们需要做的就是：一是：按照微信扫码支付规则生成二维码信息 二是：微信没有提供生成二维码图片的接口。需要我们自己把二维码信息生成到二维码图片中。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信支付之扫码支付">
+<meta property="og:url" content="http://www.cobala.cn/2016/05/15/微信支付之扫码支付/index.html">
+<meta property="og:site_name" content="wanglei">
+<meta property="og:description" content="微信扫码支付简介最近项目中要接入微信支付，从官方文档 上了解了下微信支付的场景及方式，由此总结了下开发需要做的事情。微信扫码支付，简单的来说，就是你把微信支付需要的信息，生成到二维码图片中。通过微信扫一扫，发起支付。我们需要做的就是：一是：按照微信扫码支付规则生成二维码信息 二是：微信没有提供生成二维码图片的接口。需要我们自己把二维码信息生成到二维码图片中。">
+<meta property="og:updated_time" content="2016-05-24T11:07:29.028Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信支付之扫码支付">
+<meta name="twitter:description" content="微信扫码支付简介最近项目中要接入微信支付，从官方文档 上了解了下微信支付的场景及方式，由此总结了下开发需要做的事情。微信扫码支付，简单的来说，就是你把微信支付需要的信息，生成到二维码图片中。通过微信扫一扫，发起支付。我们需要做的就是：一是：按照微信扫码支付规则生成二维码信息 二是：微信没有提供生成二维码图片的接口。需要我们自己把二维码信息生成到二维码图片中。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 1466363,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 微信支付之扫码支付 | wanglei </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?80596583bb5931d47c4313e62409579c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wanglei</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">越努力,越幸运~</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+      
+        <li class="menu-item menu-item-search">
+          <a href="#" class="st-search-show-outputs">
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Y3TMpC9qVhc2rKYoeReL','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                微信支付之扫码支付
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-15T14:12:05+08:00" content="2016-05-15">
+              2016-05-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/微信支付/" itemprop="url" rel="index">
+                    <span itemprop="name">微信支付</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/15/微信支付之扫码支付/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/15/微信支付之扫码支付/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/05/15/微信支付之扫码支付/" class="leancloud_visitors" data-flag-title="微信支付之扫码支付">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count">0</span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="微信扫码支付简介"><a href="#微信扫码支付简介" class="headerlink" title="微信扫码支付简介"></a>微信扫码支付简介</h2><p>最近项目中要接入微信支付，从<a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=6_1" target="_blank" rel="external">官方文档</a> 上了解了下微信支付的场景及方式，由此总结了下开发需要做的事情。<br>微信扫码支付，简单的来说，就是你把微信支付需要的信息，生成到二维码图片中。通过微信扫一扫，发起支付。我们需要做的就是：一是：按照微信扫码支付规则生成二维码信息 二是：微信没有提供生成二维码图片的接口。需要我们自己把二维码信息生成到二维码图片中。</p> <a id="more"></a> <h2 id="1-模式的选择"><a href="#1-模式的选择" class="headerlink" title="1.模式的选择"></a>1.模式的选择</h2><p>根据官方文档微信扫码支付有两种模式，可以选择第二种模式，微信接口会返回二维码信息给我们。而第一种模式则需要我们自己去生成二维码信息。会有些麻烦。尤其是参数大小写，还有签名的问题，容易出错。总的来说第二种模式比第一种模式简单。因此我采用的是第二种模式，比较通用。京东与携程亦用的是第二种模式。</p> <h2 id="2-调用统一下单API，生成预支付单信息"><a href="#2-调用统一下单API，生成预支付单信息" class="headerlink" title="2.调用统一下单API，生成预支付单信息"></a>2.调用统一下单API，生成预支付单信息</h2><p>模式二的微信扫码支付，需要先调用微信的统一下单接口，生成预交易单，正确调用后，会返回含有交易标示ID 和 二维码链接的URL等信息。</p> <p>###代码示例<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">HashMap&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; paramMap = Maps.newHashMap(); </span><br><span class="line">paramMap.<span class="built_in">put</span>(<span class="string">"trade_type"</span>, <span class="string">"NATIVE"</span>); <span class="comment">//交易类型</span></span><br><span class="line">paramMap.<span class="built_in">put</span>(<span class="string">"spbill_create_ip"</span>,getIp()); <span class="comment">//本机的Ip</span></span><br><span class="line">paramMap.<span class="built_in">put</span>(<span class="string">"product_id"</span>, payOrderIdsStr); <span class="comment">// 商户根据自己业务传递的参数 必填</span></span><br><span class="line">paramMap.<span class="built_in">put</span>(<span class="string">"body"</span>, orderSubject);         <span class="comment">//描述</span></span><br><span class="line">paramMap.<span class="built_in">put</span>(<span class="string">"out_trade_no"</span>, payOrderIdsStr); <span class="comment">//商户 后台的贸易单号</span></span><br><span class="line">paramMap.<span class="built_in">put</span>(<span class="string">"total_fee"</span>, <span class="string">""</span> + totalCount); <span class="comment">//金额必须为整数  单位为分</span></span><br><span class="line">paramMap.<span class="built_in">put</span>(<span class="string">"notify_url"</span>, <span class="string">"http://xxx/wx_pay_notify"</span>); <span class="comment">//支付成功后，回调地址     </span></span><br><span class="line">paramMap.<span class="built_in">put</span>(<span class="string">"appid"</span>, siteConfig.getWxPayAppId()); <span class="comment">//appid</span></span><br><span class="line">paramMap.<span class="built_in">put</span>(<span class="string">"mch_id"</span>, siteConfig.getWxPayMchId()); <span class="comment">//商户号      </span></span><br><span class="line">paramMap.<span class="built_in">put</span>(<span class="string">"nonce_str"</span>, WeixinUtil.createNoncestr(<span class="number">32</span>));  <span class="comment">//随机数  </span></span><br><span class="line">paramMap.<span class="built_in">put</span>(<span class="string">"sign"</span>,CommonUtilPub.getSign(paramMap,siteConfig.getWxPayPartnerKey()));<span class="comment">//根据微信签名规则，生成签名 </span></span><br><span class="line"><span class="keyword">String</span> xmlData = WeixinUtil.mapToXml(paramMap);<span class="comment">//把参数转换成XML数据格式</span></span><br></pre></td></tr></table></figure></p> <p>###请求数据转换成xml数据格式<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xml</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">appid</span>&gt;</span>wx2421b1c4370ec43b<span class="tag">&lt;/<span class="name">appid</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">attach</span>&gt;</span>支付测试<span class="tag">&lt;/<span class="name">attach</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">body</span>&gt;</span>JSAPI支付测试<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">mch_id</span>&gt;</span>10000100<span class="tag">&lt;/<span class="name">mch_id</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">nonce_str</span>&gt;</span>1add1a30ac87aa2db72f57a2375d8fec<span class="tag">&lt;/<span class="name">nonce_str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">notify_url</span>&gt;</span>http://wxpay.weixin.qq.com/pub_v2/pay/notify.v2.php<span class="tag">&lt;/<span class="name">notify_url</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">openid</span>&gt;</span>oUpF8uMuAJO_M2pxb1Q9zNjWeS6o<span class="tag">&lt;/<span class="name">openid</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">out_trade_no</span>&gt;</span>1415659990<span class="tag">&lt;/<span class="name">out_trade_no</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">spbill_create_ip</span>&gt;</span>14.23.150.211<span class="tag">&lt;/<span class="name">spbill_create_ip</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">total_fee</span>&gt;</span>1<span class="tag">&lt;/<span class="name">total_fee</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">trade_type</span>&gt;</span>JSAPI<span class="tag">&lt;/<span class="name">trade_type</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">sign</span>&gt;</span>0CB01533B8C1EF103065174F50BCA001<span class="tag">&lt;/<span class="name">sign</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xml</span>&gt;</span></span><br></pre></td></tr></table></figure></p> <p>PS：生成预支付单信息的时候，可以把所有的请求数据和预支付单返回的数据都存储(log日志，或者数据库)起来，方便出错后查找日志信息。</p> <p>###发送请求数据<br><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span> resXml = WeixinUtil.postData(<span class="string">"https://api.mch.weixin.qq.com/pay/unifiedorder"</span>, xmlData);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class WeixinUtil &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(WeixinUtil.class);</span><br><span class="line">  </span><br><span class="line">      <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="built_in">int</span> CONNECT_TIMEOUT = <span class="number">5000</span>; <span class="comment">// in milliseconds</span></span><br><span class="line">      <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">String</span> DEFAULT_ENCODING = <span class="string">"UTF-8"</span>;</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">String</span> postData(<span class="keyword">String</span> urlStr, <span class="keyword">String</span> data)&#123;</span><br><span class="line">          <span class="keyword">return</span> postData(urlStr, data, <span class="keyword">null</span>);</span><br><span class="line">     &#125;</span><br><span class="line">      </span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">String</span> postData(<span class="keyword">String</span> urlStr, <span class="keyword">String</span> data, <span class="keyword">String</span> contentType) &#123;</span><br><span class="line">         <span class="keyword">BufferedReader</span> reader = <span class="keyword">null</span>;</span><br><span class="line">         <span class="keyword">try</span> &#123;</span><br><span class="line">             URL url = <span class="keyword">new</span> URL(urlStr);</span><br><span class="line">             URLConnection conn = url.openConnection();</span><br><span class="line">             conn.setDoOutput(<span class="keyword">true</span>);</span><br><span class="line">             conn.setConnectTimeout(CONNECT_TIMEOUT);</span><br><span class="line">             conn.setReadTimeout(CONNECT_TIMEOUT);</span><br><span class="line">             <span class="keyword">if</span>(StringUtils.isNotBlank(contentType))</span><br><span class="line">                 conn.setRequestProperty(<span class="string">"content-type"</span>, contentType);</span><br><span class="line">             OutputStreamWriter writer = <span class="keyword">new</span> OutputStreamWriter(conn.getOutputStream(), DEFAULT_ENCODING);</span><br><span class="line">            <span class="keyword">if</span>(data == <span class="keyword">null</span>)</span><br><span class="line">                 data = <span class="string">""</span>;</span><br><span class="line">             writer.write(data); </span><br><span class="line">            writer.flush();</span><br><span class="line">             writer.close();  </span><br><span class="line"> </span><br><span class="line">             reader = <span class="keyword">new</span> <span class="keyword">BufferedReader</span>(<span class="keyword">new</span> InputStreamReader(conn.getInputStream(), DEFAULT_ENCODING));</span><br><span class="line">             StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">             <span class="keyword">String</span> <span class="built_in">line</span> = <span class="keyword">null</span>;</span><br><span class="line">             <span class="keyword">while</span> ((<span class="built_in">line</span> = reader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                 sb.<span class="built_in">append</span>(<span class="built_in">line</span>);</span><br><span class="line">                 sb.<span class="built_in">append</span>(<span class="string">"\r\n"</span>);</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="keyword">return</span> sb.toString();</span><br><span class="line">         &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">             logger_.error(<span class="string">"Error connecting to "</span> + urlStr + <span class="string">": "</span> + e.getMessage());</span><br><span class="line">         &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">             <span class="keyword">try</span> &#123;</span><br><span class="line">                 <span class="keyword">if</span> (reader != <span class="keyword">null</span>)</span><br><span class="line">                     reader.close();</span><br><span class="line">             &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p> <h3 id="返回的xml数据"><a href="#返回的xml数据" class="headerlink" title="返回的xml数据"></a>返回的xml数据</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xml</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">return_code</span>&gt;</span>&lt;![CDATA[SUCCESS]]&gt;<span class="tag">&lt;/<span class="name">return_code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">return_msg</span>&gt;</span>&lt;![CDATA[OK]]&gt;<span class="tag">&lt;/<span class="name">return_msg</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">appid</span>&gt;</span>&lt;![CDATA[wx2421b1c4370ec43b]]&gt;<span class="tag">&lt;/<span class="name">appid</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">mch_id</span>&gt;</span>&lt;![CDATA[10000100]]&gt;<span class="tag">&lt;/<span class="name">mch_id</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">nonce_str</span>&gt;</span>&lt;![CDATA[IITRi8Iabbblz1Jc]]&gt;<span class="tag">&lt;/<span class="name">nonce_str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">sign</span>&gt;</span>&lt;![CDATA[7921E432F65EB8ED0CE9755F0E86D72F]]&gt;<span class="tag">&lt;/<span class="name">sign</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">result_code</span>&gt;</span>&lt;![CDATA[SUCCESS]]&gt;<span class="tag">&lt;/<span class="name">result_code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">prepay_id</span>&gt;</span>&lt;![CDATA[wx201411101639507cbf6ffd8b0779950874]]&gt;<span class="tag">&lt;/<span class="name">prepay_id</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">trade_type</span>&gt;</span>&lt;![CDATA[JSAPI]]&gt;<span class="tag">&lt;/<span class="name">trade_type</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xml</span>&gt;</span></span><br></pre></td></tr></table></figure> <p>PS：扫码支付的，我们只需关注生成的code_url 二维码链接即可。</p> <h2 id="3-动态生成二维码图片"><a href="#3-动态生成二维码图片" class="headerlink" title="3.动态生成二维码图片"></a>3.动态生成二维码图片</h2><p>推荐使用Google的<a href="https://github.com/zxing/zxing" target="_blank" rel="external">zxing</a> 类库生成二维码。本人自己使用此类库简单的封装了一个<a href="https://github.com/mrwlei/QRGenerator" target="_blank" rel="external">小工具</a> 生成二维码，使用起来非常方便。</p> <h3 id="页面代码"><a href="#页面代码" class="headerlink" title="页面代码"></a>页面代码</h3><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"$</span></span></span><span class="template-variable">&#123;pageContext.request.contextPaht&#125;</span><span class="xml"><span class="tag"><span class="string">/commom/getQRImage.htm?code_url=$</span></span></span><span class="template-variable">&#123;code_url&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">style</span>=<span class="string">"width:300px;height:300px;"</span>/&gt;</span></span></span><br></pre></td></tr></table></figure> <h3 id="控制器代码"><a href="#控制器代码" class="headerlink" title="控制器代码"></a>控制器代码</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">   * 生成二维码图片并直接以流的形式输出到页面</span><br><span class="line">   * @param code_url</span><br><span class="line">   * @param response</span><br><span class="line">   */</span></span><br><span class="line">  <span class="variable">@RequestMapping</span>(<span class="string">"/commom/getQRImage"</span>)</span><br><span class="line">  <span class="variable">@ResponseBody</span></span><br><span class="line">  public void getQRCode(String code_url,HttpServletResponse response)&#123;</span><br><span class="line">    QRGenerator<span class="selector-class">.generateToOutputStream</span>(code_url,response.getOutputStream());</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure> <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>此次只是微信支付的其中一种，未来可能还来补充其他的支付方式。</p>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/微信扫码支付/" rel="tag">#微信扫码支付</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/07/初次相遇/" rel="next" title="初次相遇">
+                <i class="fa fa-chevron-left"></i> 初次相遇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/24/中double和float类型计算丢失精度问题总结/" rel="prev" title="java 中double和float类型计算丢失精度问题总结">
+                java 中double和float类型计算丢失精度问题总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/05/15/微信支付之扫码支付/"
+     data-title="微信支付之扫码支付"
+     data-content=""
+     data-url="http://www.cobala.cn/2016/05/15/微信支付之扫码支付/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/15/微信支付之扫码支付/"
+           data-title="微信支付之扫码支付" data-url="http://www.cobala.cn/2016/05/15/微信支付之扫码支付/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/resource/images/author.jpg"
+               alt="wanglei" />
+          <p class="site-author-name" itemprop="name">wanglei</p>
+          <p class="site-description motion-element" itemprop="description">王雷</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/mrwlei" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2817408893" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 微博
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/wanglei1992" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 知乎
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://cobaya.cn/" target="_blank">Cobaya</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#微信扫码支付简介"><span class="nav-number">1.</span> <span class="nav-text">微信扫码支付简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-模式的选择"><span class="nav-number">2.</span> <span class="nav-text">1.模式的选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-调用统一下单API，生成预支付单信息"><span class="nav-number">3.</span> <span class="nav-text">2.调用统一下单API，生成预支付单信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#返回的xml数据"><span class="nav-number">3.1.</span> <span class="nav-text">返回的xml数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-动态生成二维码图片"><span class="nav-number">4.</span> <span class="nav-text">3.动态生成二维码图片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#页面代码"><span class="nav-number">4.1.</span> <span class="nav-text">页面代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制器代码"><span class="nav-number">4.2.</span> <span class="nav-text">控制器代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wanglei</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"mrwlei"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("Smg9YtKNpl5imYKFwX6kIRtX-gzGzoHsz", "ltzJi10mbLfKB64V5g1Wvkic");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+</body>
+</html>
