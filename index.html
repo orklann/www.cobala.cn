@@ -268,6 +268,127 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/02/查询表中字段重复记录的SQL/" itemprop="url">
+                  查询表中字段重复记录的SQL
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-02T12:27:04+08:00" content="2016-06-02">
+              2016-06-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/02/查询表中字段重复记录的SQL/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/查询表中字段重复记录的SQL/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/06/02/查询表中字段重复记录的SQL/" class="leancloud_visitors" data-flag-title="查询表中字段重复记录的SQL">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count">0</span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="如何查找同一个字段有重复记录的数据"><a href="#如何查找同一个字段有重复记录的数据" class="headerlink" title="如何查找同一个字段有重复记录的数据"></a>如何查找同一个字段有重复记录的数据</h3><ol> <li><h5 id="查找表中多余的重复记录，重复记录是根据单个字段（peopleId）来判断"><a href="#查找表中多余的重复记录，重复记录是根据单个字段（peopleId）来判断" class="headerlink" title="查找表中多余的重复记录，重复记录是根据单个字段（peopleId）来判断"></a>查找表中多余的重复记录，重复记录是根据单个字段（peopleId）来判断</h5></li> </ol> <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> people  </span><br><span class="line"><span class="keyword">where</span> peopleId <span class="keyword">in</span> (<span class="keyword">select</span> peopleId <span class="keyword">from</span> people <span class="keyword">group</span> <span class="keyword">by</span> peopleId <span class="keyword">having</span> <span class="keyword">count</span>(peopleId) &gt; <span class="number">1</span>)</span><br></pre></td></tr></table></figure> <ol> <li><h5 id="删除表中多余的重复记录，重复记录是根据单个字段（peopleId）来判断，只留有rowid最小的记录"><a href="#删除表中多余的重复记录，重复记录是根据单个字段（peopleId）来判断，只留有rowid最小的记录" class="headerlink" title="删除表中多余的重复记录，重复记录是根据单个字段（peopleId）来判断，只留有rowid最小的记录"></a>删除表中多余的重复记录，重复记录是根据单个字段（peopleId）来判断，只留有rowid最小的记录</h5></li> </ol> <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> people   </span><br><span class="line"><span class="keyword">where</span> peopleId <span class="keyword">in</span> (<span class="keyword">select</span> peopleId <span class="keyword">from</span> people <span class="keyword">group</span> <span class="keyword">by</span> peopleId <span class="keyword">having</span> <span class="keyword">count</span>(peopleId) &gt; <span class="number">1</span>)  </span><br><span class="line"><span class="keyword">and</span> <span class="keyword">rowid</span> <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">select</span> <span class="keyword">min</span>(<span class="keyword">rowid</span>) <span class="keyword">from</span> people <span class="keyword">group</span> <span class="keyword">by</span> peopleId <span class="keyword">having</span> <span class="keyword">count</span>(peopleId )&gt;<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/02/查询表中字段重复记录的SQL/#more" rel="contents" style="border:none;">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/24/中double和float类型计算丢失精度问题总结/" itemprop="url">
                   java 中double和float类型计算丢失精度问题总结
                 </a>
@@ -740,130 +861,12 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/11/21/Nodejshttp-server配置/" itemprop="url">
-                  Nodejs http-server 配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-11-21T16:05:49+08:00" content="2015-11-21">
-              2015-11-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Nodejs/" itemprop="url" rel="index">
-                    <span itemprop="name">Nodejs</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/11/21/Nodejshttp-server配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/21/Nodejshttp-server配置/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2015/11/21/Nodejshttp-server配置/" class="leancloud_visitors" data-flag-title="Nodejs http-server 配置">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count">0</span>
-              </span>
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol> <li><a href="https://nodejs.org/en/" target="_blank" rel="external">下载Nodejs</a></li> <li>按照http-server 组件 打开cmd命令行 执行命令 <code>npm install http-server -g</code></li> <li>在eclipse中导入svn项目static</li> <li><p>将下面内容保存成nodejs_http-server.bat 文件</p> <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">http-server</span> <span class="selector-tag">E</span>:\<span class="selector-tag">EWorkSpace</span>\<span class="selector-tag">web</span><span class="selector-class">.resource</span>\<span class="selector-tag">static</span>\<span class="selector-tag">src</span> <span class="selector-tag">-a</span> 192<span class="selector-class">.168</span><span class="selector-class">.0</span><span class="selector-class">.128</span> <span class="selector-tag">-p</span> 8181</span><br></pre></td></tr></table></figure> </li> <li><p>配置nodejs_http-server.bat 文件执行信息<br><code>http-server [部署root目录] -a [ip地址] -p [端口]</code></p> </li> </ol> <p>详情参考 <a href="https://www.npmjs.com/package/http-server" target="_blank" rel="external">http-server</a></p>
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -904,21 +907,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

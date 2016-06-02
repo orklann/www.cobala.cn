@@ -268,8 +268,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/03/03/Windows下定时删除文件/" itemprop="url">
-                  Windows下定时删除文件
+                <a class="post-title-link" href="/2015/07/12/GoAgent和Heroku搭建翻墙/" itemprop="url">
+                  GoAgent和Heroku搭建翻墙
                 </a>
               
             
@@ -282,8 +282,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-03-03T10:08:34+08:00" content="2015-03-03">
-              2015-03-03
+            <time itemprop="dateCreated" datetime="2015-07-12T10:08:34+08:00" content="2015-07-12">
+              2015-07-12
             </time>
           </span>
 
@@ -296,8 +296,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/环境配置/" itemprop="url" rel="index">
-                    <span itemprop="name">环境配置</span>
+                  <a href="/categories/工具使用/" itemprop="url" rel="index">
+                    <span itemprop="name">工具使用</span>
                   </a>
                 </span>
 
@@ -312,8 +312,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/03/03/Windows下定时删除文件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/03/Windows下定时删除文件/" itemprop="commentsCount"></span>
+                <a href="/2015/07/12/GoAgent和Heroku搭建翻墙/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/12/GoAgent和Heroku搭建翻墙/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -323,7 +323,7 @@
 
           
           
-             <span id="/2015/03/03/Windows下定时删除文件/" class="leancloud_visitors" data-flag-title="Windows下定时删除文件">
+             <span id="/2015/07/12/GoAgent和Heroku搭建翻墙/" class="leancloud_visitors" data-flag-title="GoAgent和Heroku搭建翻墙">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -344,9 +344,12 @@
 
       
         
-          
-            <p>###直接上bat<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">::取<span class="number">7</span>天之前的日期.</span><br><span class="line">&gt;deldata_zw.zhu.vbs <span class="built_in">echo</span> wscript.<span class="built_in">echo</span> dateadd("d",-<span class="number">1</span>,<span class="built_in">date</span>)</span><br><span class="line"><span class="keyword">for</span> /f "tokens=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>* delims=-" <span class="variable">%%i</span> <span class="keyword">in</span> ('cscript /nologo deldata_zw.zhu.vbs') <span class="keyword">do</span> (</span><br><span class="line"><span class="built_in">set</span> y=<span class="variable">%%i</span></span><br><span class="line"><span class="built_in">set</span> m=<span class="variable">%%j</span></span><br><span class="line"><span class="built_in">set</span> d=<span class="variable">%%k</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%m%</span> <span class="keyword">LSS</span> <span class="number">10</span> <span class="built_in">set</span> m=<span class="variable">%m%</span></span><br><span class="line"><span class="keyword">if</span> <span class="variable">%d%</span> <span class="keyword">LSS</span> <span class="number">10</span> <span class="built_in">set</span> d=<span class="variable">%d%</span></span><br><span class="line"><span class="built_in">set</span> rq=<span class="variable">%y%</span>-<span class="variable">%m%</span>-<span class="variable">%d%</span></span><br><span class="line"><span class="built_in">echo</span> 注意:即将删除 <span class="variable">%rq%</span> 以前建立的文件</span><br><span class="line"><span class="built_in">pause</span></span><br><span class="line">::判断文件</span><br><span class="line"><span class="keyword">for</span> /f "delims=" <span class="variable">%%i</span> <span class="keyword">in</span> ('<span class="built_in">dir</span> /a-d /b /s E:\test\*.sql') <span class="keyword">do</span> (</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%%~</span>ti <span class="keyword">lss</span> <span class="variable">%rq%</span> <span class="built_in">del</span> /f /q "<span class="variable">%%i</span>")</span><br><span class="line"><span class="built_in">del</span> deldata_zw.zhu.vbs</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure></p> <p>###Note<br>先在cmd命令中看看自己系统日期的格式化 <strong>date</strong> 和 <strong>time</strong></p>
-          
+          <p>以前一直使用goagent翻墙 使用gmail或者搜索一些资料，最近goagent使用GAE一直无法访问google，看到goagent支持PHP代理，就萌生了使用免费的空间Heroku 搭建PHP代理，下面介绍下主要步骤。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/07/12/GoAgent和Heroku搭建翻墙/#more" rel="contents" style="border:none;">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -464,6 +467,124 @@
         
           
             <table> <thead> <tr> <th style="text-align:left">数据结构</th> <th style="text-align:right">优点</th> <th style="text-align:center">缺点</th> </tr> </thead> <tbody> <tr> <td style="text-align:left">数组</td> <td style="text-align:right">插入快(知道下标)</td> <td style="text-align:center">查找慢，删除慢，大小固定</td> </tr> <tr> <td style="text-align:left">有序数组</td> <td style="text-align:right">比无序的数组查找快</td> <td style="text-align:center">删除和插入慢，大小固定</td> </tr> <tr> <td style="text-align:left">栈</td> <td style="text-align:right">提供后进先出的存取方式</td> <td style="text-align:center">存取其他项很慢</td> </tr> <tr> <td style="text-align:left">队列</td> <td style="text-align:right">提供先进先出的存取方式</td> <td style="text-align:center">存取其他项很慢</td> </tr> <tr> <td style="text-align:left">链表</td> <td style="text-align:right">提供后进先出的存取方式</td> <td style="text-align:center">存取其他项很慢</td> </tr> <tr> <td style="text-align:left">二叉树</td> <td style="text-align:right">查找 插入 删除都快(树平衡的情况下)</td> <td style="text-align:center">删除算法复制</td> </tr> <tr> <td style="text-align:left">红黑树(平衡树)</td> <td style="text-align:right">查找 插入 删除都快</td> <td style="text-align:center">算法复杂</td> </tr> <tr> <td style="text-align:left">2-3-4树(平衡树)</td> <td style="text-align:right">查找 插入 删除都快</td> <td style="text-align:center">算法复杂</td> </tr> <tr> <td style="text-align:left">哈希表</td> <td style="text-align:right">插入块，通过关键字存钱快</td> <td style="text-align:center">删除慢</td> </tr> <tr> <td style="text-align:left">堆</td> <td style="text-align:right">插入删除块，对最大输家项的存取快</td> <td style="text-align:center">对其他数据项存取慢</td> </tr> <tr> <td style="text-align:left">图</td> <td style="text-align:right">对显示世界建模</td> <td style="text-align:center">有些算法慢且复杂</td> </tr> </tbody> </table>
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/03/03/Windows下定时删除文件/" itemprop="url">
+                  Windows下定时删除文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-03-03T10:08:34+08:00" content="2015-03-03">
+              2015-03-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/环境配置/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/03/03/Windows下定时删除文件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/03/Windows下定时删除文件/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2015/03/03/Windows下定时删除文件/" class="leancloud_visitors" data-flag-title="Windows下定时删除文件">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count">0</span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###直接上bat<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">::取<span class="number">7</span>天之前的日期.</span><br><span class="line">&gt;deldata_zw.zhu.vbs <span class="built_in">echo</span> wscript.<span class="built_in">echo</span> dateadd("d",-<span class="number">1</span>,<span class="built_in">date</span>)</span><br><span class="line"><span class="keyword">for</span> /f "tokens=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>* delims=-" <span class="variable">%%i</span> <span class="keyword">in</span> ('cscript /nologo deldata_zw.zhu.vbs') <span class="keyword">do</span> (</span><br><span class="line"><span class="built_in">set</span> y=<span class="variable">%%i</span></span><br><span class="line"><span class="built_in">set</span> m=<span class="variable">%%j</span></span><br><span class="line"><span class="built_in">set</span> d=<span class="variable">%%k</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%m%</span> <span class="keyword">LSS</span> <span class="number">10</span> <span class="built_in">set</span> m=<span class="variable">%m%</span></span><br><span class="line"><span class="keyword">if</span> <span class="variable">%d%</span> <span class="keyword">LSS</span> <span class="number">10</span> <span class="built_in">set</span> d=<span class="variable">%d%</span></span><br><span class="line"><span class="built_in">set</span> rq=<span class="variable">%y%</span>-<span class="variable">%m%</span>-<span class="variable">%d%</span></span><br><span class="line"><span class="built_in">echo</span> 注意:即将删除 <span class="variable">%rq%</span> 以前建立的文件</span><br><span class="line"><span class="built_in">pause</span></span><br><span class="line">::判断文件</span><br><span class="line"><span class="keyword">for</span> /f "delims=" <span class="variable">%%i</span> <span class="keyword">in</span> ('<span class="built_in">dir</span> /a-d /b /s E:\test\*.sql') <span class="keyword">do</span> (</span><br><span class="line"><span class="keyword">if</span> <span class="variable">%%~</span>ti <span class="keyword">lss</span> <span class="variable">%rq%</span> <span class="built_in">del</span> /f /q "<span class="variable">%%i</span>")</span><br><span class="line"><span class="built_in">del</span> deldata_zw.zhu.vbs</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure></p> <p>###Note<br>先在cmd命令中看看自己系统日期的格式化 <strong>date</strong> 和 <strong>time</strong></p>
           
         
       
@@ -722,133 +843,12 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/02/13/Windows下配置Java环境变量/" itemprop="url">
-                  Windows下配置Java环境变量
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-02-13T21:17:39+08:00" content="2015-02-13">
-              2015-02-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/环境配置/" itemprop="url" rel="index">
-                    <span itemprop="name">环境配置</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/02/13/Windows下配置Java环境变量/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/13/Windows下配置Java环境变量/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2015/02/13/Windows下配置Java环境变量/" class="leancloud_visitors" data-flag-title="Windows下配置Java环境变量">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count">0</span>
-              </span>
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>###环境变量<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">添加环境变量JAVA_HOME</span><br><span class="line">JAVA_HOME=<span class="symbol">C:</span>\Program Files\Java\jdk1.<span class="number">7.0</span></span><br><span class="line">添加环境变量CLASSPATH</span><br><span class="line">CLASSPATH=.;%JAVA_HOME%\<span class="class"><span class="keyword">lib</span>\<span class="title">dt</span>.<span class="title">jar</span>;</span>%JAVA_HOME%\<span class="class"><span class="keyword">lib</span>\<span class="title">tools</span>.<span class="title">jar</span>;</span></span><br><span class="line">在Path 后面追加内容</span><br><span class="line">Path=%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</span><br></pre></td></tr></table></figure></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/02/13/Windows下配置Java环境变量/#more" rel="contents" style="border:none;">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -889,21 +889,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
