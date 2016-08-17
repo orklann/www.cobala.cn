@@ -268,6 +268,127 @@
             
               
                 
+                <a class="post-title-link" href="/2015/02/26/Windows下Apache常用操作/" itemprop="url">
+                  Windows下Apache的常用操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-02-26T21:15:57+08:00" content="2015-02-26">
+              2015-02-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/环境配置/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/02/26/Windows下Apache常用操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/26/Windows下Apache常用操作/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2015/02/26/Windows下Apache常用操作/" class="leancloud_visitors" data-flag-title="Windows下Apache的常用操作">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count">0</span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="配置代理"><a href="#配置代理" class="headerlink" title="配置代理"></a>配置代理</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">找到配置文件httpd<span class="selector-class">.conf</span></span><br><span class="line">打开模块</span><br><span class="line">LoadModule proxy_module modules/mod_proxy<span class="selector-class">.so</span></span><br><span class="line">LoadModule proxy_http_module modules/mod_proxy_http<span class="selector-class">.so</span></span><br><span class="line">在文件的最下方添加</span><br><span class="line">NameVirtualHost *:<span class="number">80</span></span><br><span class="line">&lt;VirtualHost *:<span class="number">80</span>&gt;</span><br><span class="line">	ServerName www<span class="selector-class">.dzhai</span><span class="selector-class">.net</span></span><br><span class="line">	ProxyPass / http:<span class="comment">//127.0.0.1:8080/dzhai-blog</span></span><br><span class="line">  ProxyPassReverse / http:<span class="comment">//192.168.1.201:8080/dzhai-blog</span></span><br><span class="line">	ProxyPassReverseCookiePath /dzhai-blog /</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line">说明 ProxyPassReverseCookiePath /dzhai-blog / 配置cookie 地址，如果不配置会使session过期，如果访问地址和代理地址都是同一级目录可以不配置</span><br></pre></td></tr></table></figure> <p>###动态的添加Header 参数<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">打开模块</span><br><span class="line">LoadModule headers_module modules/mod_headers<span class="selector-class">.so</span></span><br><span class="line"></span><br><span class="line">&lt;Proxy http:<span class="comment">//127.0.0.1:8080/dzhai-blog/*&gt;</span></span><br><span class="line">	RequestHeader add Root_ContextPath <span class="string">"/dzhai-blog"</span></span><br><span class="line">&lt;/Proxy&gt;</span><br></pre></td></tr></table></figure></p> <p>###将根域名重定向到子域名<br><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">打开模块</span><br><span class="line">LoadModule rewrite_module modules/mod_rewrite.so</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">VirtualHost</span> *<span class="attr">:80</span>&gt;</span></span><br><span class="line">    ServerName dzhai.net</span><br><span class="line">    RewriteEngine on</span><br><span class="line">    #RewriteCond %</span><span class="template-variable">&#123;SERVER_PORT&#125;</span><span class="xml"> !^80$</span><br><span class="line">    RewriteRule ^.*$ http://www.%</span><span class="template-variable">&#123;SERVER_NAME&#125;</span><span class="xml">%</span><span class="template-variable">&#123;REQUEST_URI&#125;</span><span class="xml"> [L,R]</span><br><span class="line"><span class="tag">&lt;/<span class="name">VirtualHost</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/02/26/Windows下Apache常用操作/#more" rel="contents" style="border:none;">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/02/13/Windows下配置Java环境变量/" itemprop="url">
                   Windows下配置Java环境变量
                 </a>
@@ -728,127 +849,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/11/10/简单工厂/" itemprop="url">
-                  简单工厂
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-11-10T10:23:26+08:00" content="2014-11-10">
-              2014-11-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/11/10/简单工厂/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/10/简单工厂/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2014/11/10/简单工厂/" class="leancloud_visitors" data-flag-title="简单工厂">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count">0</span>
-              </span>
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h3><ol> <li><p>定义<br>简单工厂模式是类的创建模式，又叫做静态工厂方法（Static Factory Method）模式。简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例 </p> </li> <li><p>说明<br>假如应用系统需要支持多种登录方式如：口令认证、域认证（口令认证通常是去数据库中验证用户，而域认证则是需要到微软的域中验证用户）。那么自然的做法就是建立一个各种登录方式都适用的接口，如下图所示<br><img src="/resource/images/20151213/simplefactory.jpg" alt="simplefactory"></p> </li> </ol> <h4 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h4><ul> <li><a href="https://github.com/dzhai/design-pattern/tree/master/src/main/java/net/dzhai/dp/creational/simplefactory">源码地址</a></li> <li><a href="http://www.cnblogs.com/java-my-life/archive/2012/03/22/2412308.html">参考 java_my_life</a>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/11/10/简单工厂/#more" rel="contents" style="border:none;">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -895,7 +895,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -909,7 +909,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

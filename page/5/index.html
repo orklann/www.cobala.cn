@@ -268,6 +268,369 @@
             
               
                 
+                <a class="post-title-link" href="/2014/11/10/工厂方法/" itemprop="url">
+                  工厂方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-11-10T10:23:26+08:00" content="2014-11-10">
+              2014-11-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/11/10/工厂方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/10/工厂方法/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2014/11/10/工厂方法/" class="leancloud_visitors" data-flag-title="工厂方法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count">0</span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h3><ol> <li><p>定义<br>工厂方法模式是类的创建模式，又叫做虚拟构造子(Virtual Constructor)模式或者多态性工厂（Polymorphic Factory）模式。<br>工厂方法模式的用意是定义一个创建产品对象的工厂接口，将实际创建工作推迟到子类中。 </p> </li> <li><p>说明<br>有这么一个需求：XX系统需要支持对数据库中的员工薪资进行导出，并且支持多种格式如：HTML、CSV、PDF等，每种格式导出的结构有所不同，比如：财务跟其他人对导出薪资的HTML格式要求可能会不一样，因为财务可能需要特定的格式方便核算或其他用途。 <br><br>如果使用简单工厂模式，则工厂类必定过于臃肿。因为简单工厂模式只有一个工厂类，它需要处理所有的创建的逻辑。假如以上需求暂时只支持3种导出的格式以及2种导出的结构，那工厂类则需要6个if else来创建6种不同的类型。如果日后需求不断增加，则后果不堪设想。 <br><br>这时候就需要工厂方法模式来处理以上需求。在工厂方法模式中，核心的工厂类不再负责所有的对象的创建，而是将具体创建的工作交给子类去做。这个核心类则摇身一变，成为了一个抽象工厂角色，仅负责给出具体工厂子类必须实现的接口，而不接触哪一个类应当被实例化这种细节。<br>这种进一步抽象化的结果，使这种工厂方法模式可以用来允许系统在不修改具体工厂角色的情况下引进新的产品，这一特点无疑使得工厂方法模式具有超过简单工厂模式的优越性。<br><br>下面就针对以上需求设计UML图 </p> </li> </ol> <p><img src="/resource/images/20151213/factorymethod.jpg" alt="factorymethod"></p> <p><strong>有两种方式</strong><br>1) 直接使用Factory 进行具体的操作<br>2) 使用Factory创建出所需的对象，通过创建的对象进行操作 </p> <h4 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h4><ul> <li><a href="https://github.com/dzhai/design-pattern/tree/master/src/main/java/net/dzhai/dp/creational/factorymethod">源码地址</a></li> <li><a href="http://www.cnblogs.com/java-my-life/archive/2012/03/25/2416227.html">参考 java_my_life</a></li> </ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/11/10/工厂方法/#more" rel="contents" style="border:none;">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/11/10/简单工厂/" itemprop="url">
+                  简单工厂
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-11-10T10:23:26+08:00" content="2014-11-10">
+              2014-11-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/11/10/简单工厂/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/10/简单工厂/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2014/11/10/简单工厂/" class="leancloud_visitors" data-flag-title="简单工厂">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count">0</span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h3><ol> <li><p>定义<br>简单工厂模式是类的创建模式，又叫做静态工厂方法（Static Factory Method）模式。简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例 </p> </li> <li><p>说明<br>假如应用系统需要支持多种登录方式如：口令认证、域认证（口令认证通常是去数据库中验证用户，而域认证则是需要到微软的域中验证用户）。那么自然的做法就是建立一个各种登录方式都适用的接口，如下图所示<br><img src="/resource/images/20151213/simplefactory.jpg" alt="simplefactory"></p> </li> </ol> <h4 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h4><ul> <li><a href="https://github.com/dzhai/design-pattern/tree/master/src/main/java/net/dzhai/dp/creational/simplefactory">源码地址</a></li> <li><a href="http://www.cnblogs.com/java-my-life/archive/2012/03/22/2412308.html">参考 java_my_life</a>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/11/10/简单工厂/#more" rel="contents" style="border:none;">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014/11/10/抽象工厂/" itemprop="url">
+                  抽象工厂
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-11-10T10:23:26+08:00" content="2014-11-10">
+              2014-11-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/11/10/抽象工厂/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/10/抽象工厂/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2014/11/10/抽象工厂/" class="leancloud_visitors" data-flag-title="抽象工厂">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count">0</span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h3><ol> <li><p>定义<br>提供一个创建相关或相互依赖对象的接口，而无需指定具体的类。<br><strong>简单工厂–&gt; 工厂方法 –&gt;抽象工厂 </strong></p> </li> <li><p>UML<br><img src="/resource/images/abstractfactory.png" alt="abstractfactory"></p> </li> </ol> <p>####Link</p> <ul> <li><a href="https://github.com/dzhai/Demo/tree/master/Designpattern/src/com/d/factory/abstractfactory">源码地址</a></li> <li><a href="http://blog.csdn.net/m13666368773/article/details/7677374">http://blog.csdn.net/m13666368773/article/details/7677374</a>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/11/10/抽象工厂/#more" rel="contents" style="border:none;">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014/11/10/单例模式/" itemprop="url">
                   单例模式
                 </a>
@@ -489,369 +852,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/11/10/工厂方法/" itemprop="url">
-                  工厂方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-11-10T10:23:26+08:00" content="2014-11-10">
-              2014-11-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/11/10/工厂方法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/10/工厂方法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2014/11/10/工厂方法/" class="leancloud_visitors" data-flag-title="工厂方法">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count">0</span>
-              </span>
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h3><ol> <li><p>定义<br>工厂方法模式是类的创建模式，又叫做虚拟构造子(Virtual Constructor)模式或者多态性工厂（Polymorphic Factory）模式。<br>工厂方法模式的用意是定义一个创建产品对象的工厂接口，将实际创建工作推迟到子类中。 </p> </li> <li><p>说明<br>有这么一个需求：XX系统需要支持对数据库中的员工薪资进行导出，并且支持多种格式如：HTML、CSV、PDF等，每种格式导出的结构有所不同，比如：财务跟其他人对导出薪资的HTML格式要求可能会不一样，因为财务可能需要特定的格式方便核算或其他用途。 <br><br>如果使用简单工厂模式，则工厂类必定过于臃肿。因为简单工厂模式只有一个工厂类，它需要处理所有的创建的逻辑。假如以上需求暂时只支持3种导出的格式以及2种导出的结构，那工厂类则需要6个if else来创建6种不同的类型。如果日后需求不断增加，则后果不堪设想。 <br><br>这时候就需要工厂方法模式来处理以上需求。在工厂方法模式中，核心的工厂类不再负责所有的对象的创建，而是将具体创建的工作交给子类去做。这个核心类则摇身一变，成为了一个抽象工厂角色，仅负责给出具体工厂子类必须实现的接口，而不接触哪一个类应当被实例化这种细节。<br>这种进一步抽象化的结果，使这种工厂方法模式可以用来允许系统在不修改具体工厂角色的情况下引进新的产品，这一特点无疑使得工厂方法模式具有超过简单工厂模式的优越性。<br><br>下面就针对以上需求设计UML图 </p> </li> </ol> <p><img src="/resource/images/20151213/factorymethod.jpg" alt="factorymethod"></p> <p><strong>有两种方式</strong><br>1) 直接使用Factory 进行具体的操作<br>2) 使用Factory创建出所需的对象，通过创建的对象进行操作 </p> <h4 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h4><ul> <li><a href="https://github.com/dzhai/design-pattern/tree/master/src/main/java/net/dzhai/dp/creational/factorymethod">源码地址</a></li> <li><a href="http://www.cnblogs.com/java-my-life/archive/2012/03/25/2416227.html">参考 java_my_life</a></li> </ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/11/10/工厂方法/#more" rel="contents" style="border:none;">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/11/10/抽象工厂/" itemprop="url">
-                  抽象工厂
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-11-10T10:23:26+08:00" content="2014-11-10">
-              2014-11-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/11/10/抽象工厂/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/10/抽象工厂/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2014/11/10/抽象工厂/" class="leancloud_visitors" data-flag-title="抽象工厂">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count">0</span>
-              </span>
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h3><ol> <li><p>定义<br>提供一个创建相关或相互依赖对象的接口，而无需指定具体的类。<br><strong>简单工厂–&gt; 工厂方法 –&gt;抽象工厂 </strong></p> </li> <li><p>UML<br><img src="/resource/images/abstractfactory.png" alt="abstractfactory"></p> </li> </ol> <p>####Link</p> <ul> <li><a href="https://github.com/dzhai/Demo/tree/master/Designpattern/src/com/d/factory/abstractfactory">源码地址</a></li> <li><a href="http://blog.csdn.net/m13666368773/article/details/7677374">http://blog.csdn.net/m13666368773/article/details/7677374</a>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/11/10/抽象工厂/#more" rel="contents" style="border:none;">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/10/17/安装mysql-CenSO6-5/" itemprop="url">
-                  ConOS6.5 从MySQL官方Yum仓库安装MySQL5.6
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-10-17T09:54:39+08:00" content="2014-10-17">
-              2014-10-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/环境配置/" itemprop="url" rel="index">
-                    <span itemprop="name">环境配置</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/10/17/安装mysql-CenSO6-5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/17/安装mysql-CenSO6-5/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2014/10/17/安装mysql-CenSO6-5/" class="leancloud_visitors" data-flag-title="ConOS6.5 从MySQL官方Yum仓库安装MySQL5.6">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count">0</span>
-              </span>
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>###下载Yum仓库文件<br>点击链接<a href="http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm">No thanks, just start my download</a>直接下载 </p> <h3 id="安装Mysql"><a href="#安装Mysql" class="headerlink" title="安装Mysql"></a>安装Mysql</h3><p>下载完成后将Yum库导入到你的本地：</p> <blockquote> <p>sudo yum localinstall mysql-community-release-el6-*.noarch.rpm</p> </blockquote> <p>这个Yum库包含了MySQLServer，MySQL工作台管理工具以及ODBC驱动，现在可以通过下面的命令简单地安装MySQLServer：</p> <blockquote> <p>sudo yum install mysql-community-server</p> </blockquote> <h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>mysql的几个重要目录</p> <blockquote> <p>数据库目录<br>/var/lib/mysql/<br>配置文件<br>/usr/share/mysql（mysql.server命令及配置文件）<br>/etc/my.cnf<br>相关命令<br>/usr/bin（mysqladmin mysqldump等命令）<br>启动脚本<br>/etc/rc.d/init.d/（启动脚本文件mysql的目录）</p> </blockquote> <p>centos彻底删除mysql </p> <blockquote> <p>yum remove mysql mysql-server mysql-libs compat-mysql51<br>rm -rf /var/lib/mysql<br>rm /etc/my.cnf<br>查看是否还有mysql软件：<br>rpm -qa|grep mysql<br>有的话继续删除</p> </blockquote> <p>LINUX下的MYSQL默认是要区分表名大小写，设置不区分大小写 </p> <blockquote> <p>1.用ROOT登录，修改/etc/my.cnf<br>2.在[mysqld]下加入一行：lower_case_table_names=1<br>3.重新启动数据库即可 sudo servcie mysqld restart</p> </blockquote> <p>设置root 密码</p> <blockquote> <p>update user set password = password (‘123456’) where user = “root”<br>Node：设置完密码后 直接使用 mysql 命令是进不去mysql 数据库的<br> 要使用命令 mysql -u root -p</p> </blockquote> <p>设置Mysql 开机启动</p> <blockquote> <p>检查mysql 是否开机启动(如果2–5为on的状态就OK)<br>chkconfig –list mysqld<br>(mysqld 0:off 1:off 2:on 3:on 4:on 5:on 6:off)<br>设置开机启动<br>chkconfig mysqld on<br>关闭开机启动<br>chkconfig mysqld off</p> </blockquote> <hr> <p>###Link<br><a href="http://dev.mysql.com/downloads/repo/yum/">Mysql Yum Repository</a><br><a href="http://www.cnblogs.com/chuncn/archive/2010/10/17/1853915.html">yun 命令</a><br><a href="http://www.linuxidc.com/Linux/2014-06/103111.htm">http://www.linuxidc.com/Linux/2014-06/103111.htm</a><br><a href="http://361324767.blog.163.com/blog/static/11490252520124454042468/">http://361324767.blog.163.com/blog/static/11490252520124454042468/</a><br><a href="https://www.centos.org/forums/viewtopic.php?t=2230">https://www.centos.org/forums/viewtopic.php?t=2230</a><br><a href="http://blog.163.com/yang_jianli/blog/static/1619900062012915115253789/">http://blog.163.com/yang_jianli/blog/static/1619900062012915115253789/</a><br><a href="http://www.cnblogs.com/jifeng/archive/2010/08/29/1811879.html">http://www.cnblogs.com/jifeng/archive/2010/08/29/1811879.html</a><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/10/17/安装mysql-CenSO6-5/#more" rel="contents" style="border:none;">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -898,7 +898,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -912,7 +912,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

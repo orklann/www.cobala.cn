@@ -268,6 +268,127 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/17/HttpClient-SpringMVC-实现多张图片上传/" itemprop="url">
+                  HttpClient + SpringMVC 实现多张图片上传
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-17T11:14:42+08:00" content="2016-08-17">
+              2016-08-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/工具使用/" itemprop="url" rel="index">
+                    <span itemprop="name">工具使用</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/17/HttpClient-SpringMVC-实现多张图片上传/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/17/HttpClient-SpringMVC-实现多张图片上传/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/17/HttpClient-SpringMVC-实现多张图片上传/" class="leancloud_visitors" data-flag-title="HttpClient + SpringMVC 实现多张图片上传">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count">0</span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="客户端代码"><a href="#客户端代码" class="headerlink" title="客户端代码"></a>客户端代码</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">   <span class="comment">/*</span><br><span class="line"> * @param picPaths 需要上传的文件路径集合</span><br><span class="line"> * </span><br><span class="line"> * @param requestURL 请求的url</span><br><span class="line"> * </span><br><span class="line"> * @return 返回响应的内容</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> uploadFile(<span class="keyword">String</span>[] picPaths, <span class="keyword">String</span> requestURL) &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">String</span> boundary = UUID.randomUUID().toString(); <span class="comment">// 边界标识 随机生成</span></span><br><span class="line">	<span class="keyword">String</span> prefix = <span class="string">"--"</span>, <span class="built_in">end</span> = <span class="string">"\r\n"</span>;</span><br><span class="line">	<span class="keyword">String</span> content_type = <span class="string">"multipart/form-data"</span>; <span class="comment">// 内容类型</span></span><br><span class="line">	<span class="keyword">String</span> CHARSET = <span class="string">"utf-8"</span>; <span class="comment">// 设置编码</span></span><br><span class="line">	<span class="keyword">int</span> TIME_OUT = <span class="number">10</span> * <span class="number">10000000</span>; <span class="comment">// 超时时间</span></span><br><span class="line">	<span class="built_in">try</span> &#123;</span><br><span class="line">		URL url = <span class="keyword">new</span> URL(requestURL);</span><br><span class="line">		HttpURLConnection conn = (HttpURLConnection) url.openConnection();</span><br><span class="line">		conn.setReadTimeout(TIME_OUT);</span><br><span class="line">		conn.setConnectTimeout(TIME_OUT);</span><br><span class="line">		conn.setDoInput(true); <span class="comment">// 允许输入流</span></span><br><span class="line">		conn.setDoOutput(true); <span class="comment">// 允许输出流</span></span><br><span class="line">		conn.setUseCaches(false); <span class="comment">// 不允许使用缓存</span></span><br><span class="line">		conn.setRequestMethod(<span class="string">"POST"</span>); <span class="comment">// 请求方式</span></span><br><span class="line">		conn.setRequestProperty(<span class="string">"Charset"</span>, <span class="string">"utf-8"</span>); <span class="comment">// 设置编码</span></span><br><span class="line">		conn.setRequestProperty(<span class="string">"connection"</span>, <span class="string">"keep-alive"</span>);</span><br><span class="line">		conn.setRequestProperty(<span class="string">"Content-Type"</span>, content_type + <span class="string">";boundary="</span> + boundary);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/**</span><br><span class="line">		 * 当文件不为空，把文件包装并且上传</span><br><span class="line">		 */</span></span><br><span class="line">		OutputStream outputSteam = conn.getOutputStream();</span><br><span class="line">		DataOutputStream dos = <span class="keyword">new</span> DataOutputStream(outputSteam);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="built_in">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; picPaths.length; i++) &#123;</span><br><span class="line">			<span class="built_in">File</span> file = <span class="keyword">new</span> <span class="built_in">File</span>(picPaths[i]);</span><br><span class="line"></span><br><span class="line">			StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">			sb.append(prefix);</span><br><span class="line">			sb.append(boundary);</span><br><span class="line">			sb.append(<span class="built_in">end</span>);</span><br><span class="line"></span><br><span class="line">			<span class="comment">/**</span><br><span class="line">			 * 这里重点注意： name里面的值为服务器端需要key 只有这个key 才可以得到对应的文件</span><br><span class="line">			 * filename是文件的名字，包含后缀名的 比如:abc.png</span><br><span class="line">			 */</span></span><br><span class="line">			sb.append(<span class="string">"Content-Disposition: form-data; name=\""</span> + <span class="string">"multipartFiles"</span> + <span class="string">"\"; filename=\""</span> + file.getName() + <span class="string">"\""</span> + <span class="built_in">end</span>);</span><br><span class="line">			sb.append(<span class="string">"Content-Type: application/octet-stream; charset="</span> + CHARSET + <span class="built_in">end</span>);</span><br><span class="line">			sb.append(<span class="built_in">end</span>);</span><br><span class="line">			dos.<span class="built_in">write</span>(sb.toString().getBytes());</span><br><span class="line"></span><br><span class="line">			InputStream is = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">			<span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">8192</span>];<span class="comment">// 8k</span></span><br><span class="line">			<span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">			<span class="built_in">while</span> ((len = is.<span class="built_in">read</span>(bytes)) != <span class="number">-1</span>) &#123;</span><br><span class="line">				dos.<span class="built_in">write</span>(bytes, <span class="number">0</span>, len);</span><br><span class="line">			&#125;</span><br><span class="line">			is.<span class="built_in">close</span>();</span><br><span class="line">			dos.<span class="built_in">write</span>(<span class="built_in">end</span>.getBytes());<span class="comment">// 一个文件结束标志</span></span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">byte</span>[] end_data = (prefix + boundary + prefix + <span class="built_in">end</span>).getBytes();<span class="comment">// 结束</span></span><br><span class="line">																		<span class="comment">// http</span></span><br><span class="line">																		<span class="comment">// 流</span></span><br><span class="line">		</span><br><span class="line">		dos.<span class="built_in">write</span>(end_data);</span><br><span class="line">		dos.<span class="built_in">flush</span>();</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/**</span><br><span class="line">		 * 获取响应码 200=成功 当响应成功，获取响应的流</span><br><span class="line">		 */</span></span><br><span class="line">		<span class="keyword">int</span> res = conn.getResponseCode();</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">if</span>(res == <span class="number">200</span>) &#123;</span><br><span class="line">		 InputStream is = conn.getInputStream();  </span><br><span class="line">          <span class="keyword">int</span> ch;  </span><br><span class="line">          StringBuffer b = <span class="keyword">new</span> StringBuffer();  </span><br><span class="line">          <span class="built_in">while</span> ((ch = is.<span class="built_in">read</span>()) != <span class="number">-1</span>) &#123;  </span><br><span class="line">              b.append((<span class="keyword">char</span>) ch);  </span><br><span class="line">          &#125;  </span><br><span class="line">          <span class="keyword">String</span> s = b.toString();  </span><br><span class="line">          </span><br><span class="line">          </span><br><span class="line">          System.out.<span class="built_in">println</span>(s);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125; <span class="built_in">catch</span> (MalformedURLException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125; <span class="built_in">catch</span> (IOException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/17/HttpClient-SpringMVC-实现多张图片上传/#more" rel="contents" style="border:none;">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/02/查询表中字段重复记录的SQL/" itemprop="url">
                   查询表中字段重复记录的SQL
                 </a>
@@ -728,139 +849,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/11/21/数据结构概率/" itemprop="url">
-                  数据结构概率
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-11-21T23:33:37+08:00" content="2015-11-21">
-              2015-11-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-                  <span>， <span>
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/数据结构/读书笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">读书笔记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/11/21/数据结构概率/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/21/数据结构概率/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2015/11/21/数据结构概率/" class="leancloud_visitors" data-flag-title="数据结构概率">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count">0</span>
-              </span>
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="算法-数据结构-程序"><a href="#算法-数据结构-程序" class="headerlink" title="算法+数据结构=程序"></a>算法+数据结构=程序</h3><h3 id="基本概念和常用术语"><a href="#基本概念和常用术语" class="headerlink" title="基本概念和常用术语"></a>基本概念和常用术语</h3><ol> <li><strong>数据(data)</strong>是描述客观事物的数、字符以及能输入计算机中并被计算机处理的符号的集合。</li> <li><strong>数据元素(data element)</strong>是数据的基本单位。</li> <li><strong>数据对象(data object)</strong>是具有相同性质的数据元素的集合，是数据的一个子集。比如，大写字母数据对象就是集合{‘A’,’B’,…’Z’}.</li> </ol>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/11/21/数据结构概率/#more" rel="contents" style="border:none;">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -907,7 +895,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -921,7 +909,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

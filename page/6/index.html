@@ -268,6 +268,127 @@
             
               
                 
+                <a class="post-title-link" href="/2014/10/17/安装mysql-CenSO6-5/" itemprop="url">
+                  ConOS6.5 从MySQL官方Yum仓库安装MySQL5.6
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-10-17T09:54:39+08:00" content="2014-10-17">
+              2014-10-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/环境配置/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/10/17/安装mysql-CenSO6-5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/17/安装mysql-CenSO6-5/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2014/10/17/安装mysql-CenSO6-5/" class="leancloud_visitors" data-flag-title="ConOS6.5 从MySQL官方Yum仓库安装MySQL5.6">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count">0</span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>###下载Yum仓库文件<br>点击链接<a href="http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm">No thanks, just start my download</a>直接下载 </p> <h3 id="安装Mysql"><a href="#安装Mysql" class="headerlink" title="安装Mysql"></a>安装Mysql</h3><p>下载完成后将Yum库导入到你的本地：</p> <blockquote> <p>sudo yum localinstall mysql-community-release-el6-*.noarch.rpm</p> </blockquote> <p>这个Yum库包含了MySQLServer，MySQL工作台管理工具以及ODBC驱动，现在可以通过下面的命令简单地安装MySQLServer：</p> <blockquote> <p>sudo yum install mysql-community-server</p> </blockquote> <h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>mysql的几个重要目录</p> <blockquote> <p>数据库目录<br>/var/lib/mysql/<br>配置文件<br>/usr/share/mysql（mysql.server命令及配置文件）<br>/etc/my.cnf<br>相关命令<br>/usr/bin（mysqladmin mysqldump等命令）<br>启动脚本<br>/etc/rc.d/init.d/（启动脚本文件mysql的目录）</p> </blockquote> <p>centos彻底删除mysql </p> <blockquote> <p>yum remove mysql mysql-server mysql-libs compat-mysql51<br>rm -rf /var/lib/mysql<br>rm /etc/my.cnf<br>查看是否还有mysql软件：<br>rpm -qa|grep mysql<br>有的话继续删除</p> </blockquote> <p>LINUX下的MYSQL默认是要区分表名大小写，设置不区分大小写 </p> <blockquote> <p>1.用ROOT登录，修改/etc/my.cnf<br>2.在[mysqld]下加入一行：lower_case_table_names=1<br>3.重新启动数据库即可 sudo servcie mysqld restart</p> </blockquote> <p>设置root 密码</p> <blockquote> <p>update user set password = password (‘123456’) where user = “root”<br>Node：设置完密码后 直接使用 mysql 命令是进不去mysql 数据库的<br> 要使用命令 mysql -u root -p</p> </blockquote> <p>设置Mysql 开机启动</p> <blockquote> <p>检查mysql 是否开机启动(如果2–5为on的状态就OK)<br>chkconfig –list mysqld<br>(mysqld 0:off 1:off 2:on 3:on 4:on 5:on 6:off)<br>设置开机启动<br>chkconfig mysqld on<br>关闭开机启动<br>chkconfig mysqld off</p> </blockquote> <hr> <p>###Link<br><a href="http://dev.mysql.com/downloads/repo/yum/">Mysql Yum Repository</a><br><a href="http://www.cnblogs.com/chuncn/archive/2010/10/17/1853915.html">yun 命令</a><br><a href="http://www.linuxidc.com/Linux/2014-06/103111.htm">http://www.linuxidc.com/Linux/2014-06/103111.htm</a><br><a href="http://361324767.blog.163.com/blog/static/11490252520124454042468/">http://361324767.blog.163.com/blog/static/11490252520124454042468/</a><br><a href="https://www.centos.org/forums/viewtopic.php?t=2230">https://www.centos.org/forums/viewtopic.php?t=2230</a><br><a href="http://blog.163.com/yang_jianli/blog/static/1619900062012915115253789/">http://blog.163.com/yang_jianli/blog/static/1619900062012915115253789/</a><br><a href="http://www.cnblogs.com/jifeng/archive/2010/08/29/1811879.html">http://www.cnblogs.com/jifeng/archive/2010/08/29/1811879.html</a><br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/10/17/安装mysql-CenSO6-5/#more" rel="contents" style="border:none;">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014/10/11/心花路放/" itemprop="url">
                   心花路放
                 </a>
@@ -706,127 +827,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/05/20/sql_1/" itemprop="url">
-                  SQL Server发送邮件的存储过程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-05-20T10:12:42+08:00" content="2014-05-20">
-              2014-05-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/SQL/" itemprop="url" rel="index">
-                    <span itemprop="name">SQL</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/05/20/sql_1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/20/sql_1/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2014/05/20/sql_1/" class="leancloud_visitors" data-flag-title="SQL Server发送邮件的存储过程">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count">0</span>
-              </span>
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>对于DB中的资料变更，有时会有寄Mail通知相关人员的需求。下面是实现这一功能的一种方法<br>1.建立发Mail的存储过程<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/05/20/sql_1/#more" rel="contents" style="border:none;">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -873,7 +873,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -887,7 +887,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
