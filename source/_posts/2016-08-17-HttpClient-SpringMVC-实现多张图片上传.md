@@ -1,8 +1,8 @@
 title: HttpClient + SpringMVC 实现多张图片上传
-categories:工具使用
-tags:工具使用
-keywords:多张图片上传
-date:2016-08-17 11:14:42
+categories: 工具使用
+tags: 工具使用
+keywords: 多张图片上传
+date: 2016-08-17 11:14:42
 ---
 
 ## 客户端代码
